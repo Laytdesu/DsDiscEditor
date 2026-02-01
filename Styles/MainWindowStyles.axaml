@@ -1,0 +1,45 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+    <Style Selector="Border.addable-window"></Style>
+    <Style Selector="TextBlock.section-title">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Margin"/>
+    </Style>
+    <Style Selector="Button.add-btn"></Style>
+    <Style Selector="Border.colored-container">
+        <Setter Property="Background" Value="#7d7d7d"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="Padding" Value="15"/>
+    </Style>
+    <Style Selector="TextBlock.list-header"></Style>
+    <Style Selector="TextBox.list-input"></Style>
+    <Style Selector="Button.remove-btn"></Style>
+    <Style Selector="TextBlock.button-text">
+        <Setter Property="Margin" Value="0,7,2, 0"/>
+    </Style>
+    <Style Selector="CheckBox">
+        <Setter Property="BorderThickness" Value="5"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
+    </Style>
+    <Style Selector="ComboBox">
+        <Setter Property="Margin" Value="0,5"/>
+    </Style>
+    <Style Selector="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontFamily" Value="Google Sans Flex"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="LetterSpacing" Value="0.5"/>
+    </Style>
+    <Style Selector="StackPanel.checkbox-container">
+        <Setter Property="Margin" Value="5, 0"/>
+    </Style>
+</Styles>

@@ -1,0 +1,141 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:DsDiscEditor.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DsDiscEditor.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="DsDiscEditor"
+        Background="#5D5D5D"
+        Padding="20"
+        Width="900"
+        Height="550">
+
+        
+        <Window.Styles>
+                <StyleInclude Source="/Styles/MainWindowStyles.axaml"/>
+        </Window.Styles>
+
+<ScrollViewer>
+        <!-- Main Container -->
+        <StackPanel>
+                <!-- Speakers Section -->
+                <Border Classes="addable-window">
+                        <StackPanel>
+                                <!-- Header -->
+                                <DockPanel>
+                                        <TextBlock Classes="section-title" Text="Speakers"/>
+                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
+                                </DockPanel>
+                                
+                                <Border Classes="colored-container">
+                                        <StackPanel>
+                                                <!-- List Grid Header -->
+                                                <Grid ColumnDefinitions="20,50,*,65,20">
+                                                        <TextBlock Grid.Column="0" Text="ID" Classes="list-header"/>
+                                                        <TextBlock Grid.Column="1" Text="Name" Classes="list-header"/>
+                                                        <TextBlock Grid.Column="2" Text="Path" Classes="list-header"/>
+                                                        <TextBlock Grid.Column="3" Text="Dict" Classes="list-header"/>
+                                                </Grid>
+                                                <!-- List Grid Editor -->
+                                                <Grid ColumnDefinitions="20,50,*,65,20" Margin="0,4">
+                                                        <TextBox Grid.Column="0" Classes="list-input"/>
+                                                        <TextBox Grid.Column="1" Classes="list-input"/>
+                                                        <TextBox Grid.Column="2" Classes="list-input"/>
+                                                        <TextBox Grid.Column="3" Classes="list-input"/>
+                                                        <Button Grid.Column="4" Content="-" Classes="remove-btn"/>
+                                                </Grid>
+                                        </StackPanel>
+                                </Border>
+                        </StackPanel>
+                </Border>
+                <!-- Dictionary Editor -->
+                <Border Classes="addable-window">
+                        <StackPanel>
+                                <!-- Header -->
+                                <DockPanel>
+                                        <TextBlock Classes="section-title" Text="Dictionaries"/>
+                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
+                                </DockPanel>
+                                <!-- Main -->
+                                <Border Classes="colored-container">
+                                        <StackPanel>
+                                                <!-- List Grid text -->
+                                                <Grid ColumnDefinitions="50,*,20">
+                                                        <TextBlock Grid.Column="0" Text="Dict"/>
+                                                        <TextBlock Grid.Column="1" Text="Path"/>
+                                                </Grid>
+                                                <!-- List Grid Editor -->
+                                                <Grid ColumnDefinitions="50,*,20">
+                                                        <TextBox Grid.Column="0" Classes="list-input"></TextBox>
+                                                        <TextBox Grid.Column="1" Classes="list-input"></TextBox>
+                                                        <Button Grid.Column="2" Content="-" Classes="remove-btn"/>
+                                                </Grid>
+                                        </StackPanel>
+                                </Border>
+                        </StackPanel>
+                </Border>
+                <!-- Embeds/Prediction Editor -->
+                <Border Width="350" Classes="normal-window">
+                        <StackPanel>
+                                <DockPanel>
+                                        <TextBlock Classes="section-title" Text="Embeds/Prediction"/>
+                                </DockPanel>
+                                <Border Classes="colored-container">
+                                <WrapPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Duration:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Pitch:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Energy:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Breathiness:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Voicing:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Classes="button-text" Text="Tension:"/>
+                                                <CheckBox/>
+                                        </StackPanel>
+                                        <StackPanel>
+                                                <TextBlock Text="Type:"/>
+                                                <ComboBox SelectedIndex="0">
+                                                        <ComboBoxItem>Variance</ComboBoxItem>
+                                                        <ComboBoxItem>Acoustic</ComboBoxItem>
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel>
+                                                <TextBlock Text="PE:"/>
+                                                <ComboBox SelectedIndex="0">
+                                                        <ComboBoxItem>RMVPE</ComboBoxItem>
+                                                        <ComboBoxItem>Harvest</ComboBoxItem>
+                                                        <ComboBoxItem>Parselmouth</ComboBoxItem>
+                                                </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel>
+                                                <TextBlock Text="HNSEP:"/>
+                                                <ComboBox SelectedIndex="0">
+                                                        <ComboBoxItem>VR</ComboBoxItem>
+                                                        <ComboBoxItem>WORLD</ComboBoxItem>
+                                                </ComboBox>
+                                        </StackPanel>
+                                </WrapPanel>
+                                </Border>
+                        </StackPanel>
+                </Border>
+        </StackPanel>
+</ScrollViewer>
+    
+</Window>
