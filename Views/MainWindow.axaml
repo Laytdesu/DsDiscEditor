@@ -20,12 +20,12 @@
 
 <ScrollViewer>
         <!-- Main Container -->
-        <StackPanel>
+        <WrapPanel>
                 <!-- Speakers Section -->
-                <Border Classes="addable-window">
+                <Border Width="500" Classes="normal-window">
                         <StackPanel>
                                 <!-- Header -->
-                                <DockPanel>
+                                <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Speakers"/>
                                         <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
                                 </DockPanel>
@@ -52,10 +52,10 @@
                         </StackPanel>
                 </Border>
                 <!-- Dictionary Editor -->
-                <Border Classes="addable-window">
+                <Border Width="300" Classes="normal-window">
                         <StackPanel>
                                 <!-- Header -->
-                                <DockPanel>
+                                <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Dictionaries"/>
                                         <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
                                 </DockPanel>
@@ -80,7 +80,7 @@
                 <!-- Embeds/Prediction Editor -->
                 <Border Width="350" Classes="normal-window">
                         <StackPanel>
-                                <DockPanel>
+                                <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Embeds/Prediction"/>
                                 </DockPanel>
                                 <Border Classes="colored-container">
@@ -135,7 +135,21 @@
                                 </Border>
                         </StackPanel>
                 </Border>
-        </StackPanel>
+                <!-- Other Editor -->
+                <Border>
+                        <StackPanel>
+                                <TextBlock Classes="section-title" Text="Other"/>
+                                <Border Classes="colored-container">
+                                        <WrapPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="Save/Validate Every:" Classes="button-text"/>
+                                                        <TextBox Width="60" Height="20"/>
+                                                </StackPanel>
+                                        </WrapPanel>
+                                </Border>
+                        </StackPanel>
+                </Border>
+        </WrapPanel>
 </ScrollViewer>
     
 </Window>
