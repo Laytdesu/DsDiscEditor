@@ -27,9 +27,11 @@
     </Style>
     <Style Selector="TextBlock.list-header"></Style>
     <Style Selector="TextBox.list-input">
-        <!-- <Setter Property="Padding" Value="8,6"/> -->
+    <Setter Property="CornerRadius" Value="5"/>
     </Style>
-    <Style Selector="Button.remove-btn"></Style>
+    <Style Selector="Button.remove-btn">
+        <Setter Property="CornerRadius" Value="5"/>
+    </Style>
     <Style Selector="TextBlock.button-text">
         <Setter Property="Margin" Value="0,7,2, 0"/>
     </Style>
@@ -40,8 +42,10 @@
     </Style>
     <Style Selector="ComboBox">
         <Setter Property="Margin" Value="0, 5, 5, 0"/>
-        <Setter Property="Padding" Value="10, 5"/>
+        <!-- <Setter Property="Padding" Value="10, 5"/> -->
         <Setter Property="CornerRadius" Value="7"/>
+        <Setter Property="MinHeight" Value="0"/>
+        <Setter Property="Height" Value="27"/>
     </Style>
     <Style Selector="TextBlock">
         <Setter Property="Foreground" Value="White"/>
@@ -57,5 +61,14 @@
     </Style>
     <Style Selector="Border.normal-window">
         <Setter Property="Margin" Value="5"/>
+    </Style>
+    <Style Selector="TextBlock.other-label-text">
+        <Setter Property="Margin" Value="0,1,5,0"/>
+    </Style>
+    <Style Selector="TextBox.other-input">
+        <Setter Property="Height" Value="20"/>
+    </Style>
+    <Style Selector="StackPanel.other-item-container">
+        <Setter Property="Margin" Value="5,3"/>
     </Style>
 </Styles>

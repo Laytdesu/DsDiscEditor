@@ -33,19 +33,19 @@
                                 <Border Classes="colored-container">
                                         <StackPanel>
                                                 <!-- List Grid Header -->
-                                                <Grid ColumnDefinitions="20,50,*,65,20">
-                                                        <TextBlock Grid.Column="0" Text="ID" Classes="list-header"/>
-                                                        <TextBlock Grid.Column="1" Text="Name" Classes="list-header"/>
-                                                        <TextBlock Grid.Column="2" Text="Path" Classes="list-header"/>
-                                                        <TextBlock Grid.Column="3" Text="Dict" Classes="list-header"/>
+                                                <Grid ColumnDefinitions="29,58,*,73,33">
+                                                        <TextBlock Margin="4,0,0,0" Grid.Column="0" Text="ID" Classes="list-header"/>
+                                                        <TextBlock Margin="8,0,0,0" Grid.Column="1" Text="Name" Classes="list-header"/>
+                                                        <TextBlock Margin="8,0,0,0" Grid.Column="2" Text="Path" Classes="list-header"/>
+                                                        <TextBlock Margin="8,0,0,0" Grid.Column="3" Text="Dict" Classes="list-header"/>
                                                 </Grid>
                                                 <!-- List Grid Editor -->
-                                                <Grid ColumnDefinitions="20,50,*,65,20" Margin="0,4">
-                                                        <TextBox Grid.Column="0" Classes="list-input"/>
-                                                        <TextBox Grid.Column="1" Classes="list-input"/>
-                                                        <TextBox Grid.Column="2" Classes="list-input"/>
-                                                        <TextBox Grid.Column="3" Classes="list-input"/>
-                                                        <Button Grid.Column="4" Content="-" Classes="remove-btn"/>
+                                                <Grid Height="25" ColumnDefinitions="29,55,*,70,30" Margin="0,4">
+                                                        <TextBox Margin="4,0,0,0" Grid.Column="0" Classes="list-input"/>
+                                                        <TextBox Margin="5,0,0,0" Grid.Column="1" Classes="list-input"/>
+                                                        <TextBox Margin="5,0,0,0" Grid.Column="2" Classes="list-input"/>
+                                                        <TextBox Margin="5,0,0,0" Grid.Column="3" Classes="list-input"/>
+                                                        <Button Margin="5,0,0,0" Grid.Column="4" Content="-" Classes="remove-btn"/>
                                                 </Grid>
                                         </StackPanel>
                                 </Border>
@@ -63,22 +63,22 @@
                                 <Border Classes="colored-container">
                                         <StackPanel>
                                                 <!-- List Grid text -->
-                                                <Grid ColumnDefinitions="50,*,20">
-                                                        <TextBlock Grid.Column="0" Text="Dict"/>
-                                                        <TextBlock Grid.Column="1" Text="Path"/>
+                                                <Grid ColumnDefinitions="54,*,30">
+                                                        <TextBlock Margin="4,0,0,0" Grid.Column="0" Text="Dict"/>
+                                                        <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Path"/>
                                                 </Grid>
                                                 <!-- List Grid Editor -->
-                                                <Grid ColumnDefinitions="50,*,20">
-                                                        <TextBox Grid.Column="0" Classes="list-input"></TextBox>
-                                                        <TextBox Grid.Column="1" Classes="list-input"></TextBox>
-                                                        <Button Grid.Column="2" Content="-" Classes="remove-btn"/>
+                                                <Grid Height="25" ColumnDefinitions="54,*,30" Margin="0,4">
+                                                        <TextBox Margin="4,0,0,0" Grid.Column="0" Classes="list-input"></TextBox>
+                                                        <TextBox Margin="5,0,0,0" Grid.Column="1" Classes="list-input"></TextBox>
+                                                        <Button Margin="5,0,0,0" Grid.Column="2" Content="-" Classes="remove-btn"/>
                                                 </Grid>
                                         </StackPanel>
                                 </Border>
                         </StackPanel>
                 </Border>
                 <!-- Embeds/Prediction Editor -->
-                <Border Width="350" Classes="normal-window">
+                <Border MaxWidth="350" Classes="normal-window">
                         <StackPanel>
                                 <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Embeds/Prediction"/>
@@ -136,14 +136,40 @@
                         </StackPanel>
                 </Border>
                 <!-- Other Editor -->
-                <Border>
+                <Border MaxWidth="500" Classes="normal-window">
                         <StackPanel>
-                                <TextBlock Classes="section-title" Text="Other"/>
+                                <DockPanel Classes="header">
+                                        <TextBlock Classes="section-title" Text="Other"/>
+                                </DockPanel>
                                 <Border Classes="colored-container">
                                         <WrapPanel>
-                                                <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="Save/Validate Every:" Classes="button-text"/>
-                                                        <TextBox Width="60" Height="20"/>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Save/Validate Every:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Max Steps:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Max Keep Checkpoints:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Start Permanent Checkpoint:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Save Permanent Checkpoint:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Max Batch Size:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
+                                                </StackPanel>
+                                                <StackPanel Classes="other-item-container" Orientation="Horizontal">
+                                                        <TextBlock Text="Output Path:" Classes="other-label-text"/>
+                                                        <TextBox Width="60" Classes="other-input"/>
                                                 </StackPanel>
                                         </WrapPanel>
                                 </Border>
