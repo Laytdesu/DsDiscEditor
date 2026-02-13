@@ -1,4 +1,4 @@
-namespace DsDiscEditor.Models;
+namespace DsDiscEditor.Views;
 
 public class EmbedsConfigItem
 {

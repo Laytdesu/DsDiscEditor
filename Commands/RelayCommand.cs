@@ -2,11 +2,11 @@ using System.Windows.Input;
 using System;
 namespace DsDiscEditor.Commands;
 
-public class RelayCommand : ICommand
+public class RelayCommand<T> : ICommand
 {
-    private readonly Action _execute;
+    private readonly Action<T> _execute;
 
-    public RelayCommand(Action execute)
+    public RelayCommand(Action<T> execute)
     {
         _execute = execute;
     }
@@ -15,7 +15,7 @@ public class RelayCommand : ICommand
 
     public void Execute(object? parameter)
     {
-        _execute();
+        _execute((T?)parameter);
     }
 
     public event EventHandler? CanExecuteChanged;

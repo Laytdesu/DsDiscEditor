@@ -3,15 +3,18 @@
         xmlns:vm="using:DsDiscEditor.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:DsDiscEditor.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DsDiscEditor.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="views:MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="DsDiscEditor"
         Background="#5D5D5D"
         Padding="20"
         Width="900"
-        Height="550">
+        Height="550"
+        MinWidth="550"
+        MinHeight="250">
 
         
         <Window.Styles>
@@ -19,6 +22,7 @@
         </Window.Styles>
 
 <ScrollViewer>
+        <StackPanel>
         <!-- Main Container -->
         <WrapPanel>
                 <!-- Speakers Section -->
@@ -27,7 +31,7 @@
                                 <!-- Header -->
                                 <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Speakers"/>
-                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
+                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right" Click="SpeakerAddItem"/>
                                 </DockPanel>
                                 
                                 <Border Classes="colored-container">
@@ -40,13 +44,19 @@
                                                         <TextBlock Margin="8,0,0,0" Grid.Column="3" Text="Dict" Classes="list-header"/>
                                                 </Grid>
                                                 <!-- List Grid Editor -->
-                                                <Grid Height="25" ColumnDefinitions="29,55,*,70,30" Margin="0,4">
-                                                        <TextBox Margin="4,0,0,0" Grid.Column="0" Classes="list-input"/>
-                                                        <TextBox Margin="5,0,0,0" Grid.Column="1" Classes="list-input"/>
-                                                        <TextBox Margin="5,0,0,0" Grid.Column="2" Classes="list-input"/>
-                                                        <TextBox Margin="5,0,0,0" Grid.Column="3" Classes="list-input"/>
-                                                        <Button Margin="5,0,0,0" Grid.Column="4" Content="-" Classes="remove-btn"/>
-                                                </Grid>
+                                                <ItemsControl ItemsSource="{Binding SpeakersCollection}">
+                                                        <ItemsControl.ItemTemplate>
+                                                                <DataTemplate x:DataType="views:SpeakerItem">
+                                                                <Grid Height="25" ColumnDefinitions="29,55,*,70,30" Margin="0,4">
+                                                                <TextBox Margin="4,0,0,0" Grid.Column="0" Text="{Binding Id}" Classes="list-input"/>
+                                                                <TextBox Margin="5,0,0,0" Grid.Column="1" Text="{Binding Name}" Classes="list-input"/>
+                                                                <TextBox Margin="5,0,0,0" Grid.Column="2" Text="{Binding SpkPath}" Classes="list-input"/>
+                                                                <TextBox Margin="5,0,0,0" Grid.Column="3" Text="{Binding Dict}" Classes="list-input"/>
+                                                                <Button Margin="5,0,0,0" Grid.Column="4" Content="-" Classes="remove-btn"/>
+                                                                </Grid>
+                                                                </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
                                         </StackPanel>
                                 </Border>
                         </StackPanel>
@@ -57,7 +67,7 @@
                                 <!-- Header -->
                                 <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Dictionaries"/>
-                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right"/>
+                                        <Button Classes="add-btn" Content="+" DockPanel.Dock="Right" Click="DictAddItem"/>
                                 </DockPanel>
                                 <!-- Main -->
                                 <Border Classes="colored-container">
@@ -68,11 +78,17 @@
                                                         <TextBlock Margin="5,0,0,0" Grid.Column="1" Text="Path"/>
                                                 </Grid>
                                                 <!-- List Grid Editor -->
-                                                <Grid Height="25" ColumnDefinitions="54,*,30" Margin="0,4">
-                                                        <TextBox Margin="4,0,0,0" Grid.Column="0" Classes="list-input"></TextBox>
-                                                        <TextBox Margin="5,0,0,0" Grid.Column="1" Classes="list-input"></TextBox>
-                                                        <Button Margin="5,0,0,0" Grid.Column="2" Content="-" Classes="remove-btn"/>
-                                                </Grid>
+                                                <ItemsControl ItemsSource="{Binding DictsCollection}">
+                                                        <ItemsControl.ItemTemplate>
+                                                                <DataTemplate x:DataType="views:DictItem">
+                                                                        <Grid Height="25" ColumnDefinitions="54,*,30" Margin="0,4">
+                                                                        <TextBox Margin="4,0,0,0" Grid.Column="0" Classes="list-input" Text="{Binding Name}"/>
+                                                                        <TextBox Margin="5,0,0,0" Grid.Column="1" Classes="list-input" Text="{Binding DictPath}"/>
+                                                                        <Button Margin="5,0,0,0" Grid.Column="2" Content="-" Classes="remove-btn"/>
+                                                                        </Grid>
+                                                                </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
                                         </StackPanel>
                                 </Border>
                         </StackPanel>
@@ -83,8 +99,12 @@
                                 <DockPanel Classes="header">
                                         <TextBlock Classes="section-title" Text="Embeds/Prediction"/>
                                 </DockPanel>
+                                
                                 <Border Classes="colored-container">
-                                <WrapPanel>
+                                        <ItemsControl ItemsSource="{Binding EmbedsConfigCollection}">
+                                                <ItemsControl.ItemTemplate>
+                                                        <DataTemplate x:DataType="views:EmbedsConfigItem">
+                                        <WrapPanel>
                                         <StackPanel Classes="checkbox-container" Orientation="Horizontal" VerticalAlignment="Center">
                                                 <TextBlock Classes="button-text" Text="Duration:"/>
                                                 <CheckBox/>
@@ -132,6 +152,9 @@
                                                 </ComboBox>
                                         </StackPanel>
                                 </WrapPanel>
+                                </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                                 </Border>
                         </StackPanel>
                 </Border>
@@ -142,7 +165,10 @@
                                         <TextBlock Classes="section-title" Text="Other"/>
                                 </DockPanel>
                                 <Border Classes="colored-container">
-                                        <WrapPanel>
+                                        <ItemsControl ItemsSource="{Binding OtherConfigCollection}">
+                                                <ItemsControl.ItemTemplate>
+                                                        <DataTemplate x:DataType="views:OtherConfigItem">
+                                                        <WrapPanel>
                                                 <StackPanel Classes="other-item-container" Orientation="Horizontal">
                                                         <TextBlock Text="Save/Validate Every:" Classes="other-label-text"/>
                                                         <TextBox Width="60" Classes="other-input"/>
@@ -172,10 +198,15 @@
                                                         <TextBox Width="60" Classes="other-input"/>
                                                 </StackPanel>
                                         </WrapPanel>
+                                                        </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                 </Border>
                         </StackPanel>
                 </Border>
         </WrapPanel>
+        <Button Margin="7" CornerRadius="7" MaxWidth="1000" Content="Export" Background="DodgerBlue" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="16"/>
+        </StackPanel>
 </ScrollViewer>
     
 </Window>
