@@ -1,43 +1,50 @@
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Windows.Input;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DsDiscEditor.Commands;
+using DsDiscEditor.ViewModels;
 using RelayCommand = CommunityToolkit.Mvvm.Input.RelayCommand;
 
 namespace DsDiscEditor.Views;
 
 public partial class MainWindow : Window
 {
-    public ObservableCollection<DictItem> DictsCollection { get; } = new();
-    public ObservableCollection<SpeakerItem> SpeakersCollection { get; } = new();
-    public ObservableCollection<EmbedsConfigItem> EmbedsConfigCollection { get; } = new();
-    public ObservableCollection<OtherConfigItem> OtherConfigCollection { get; } = new();
 
-    public ICommand SpeakerAddItemCommand { get; }
-    public ICommand SpeakerRemoveItemCommand { get; }
-    public ICommand DictAddItemCommand { get; }
-    public ICommand DictRemoveItemCommand { get; }
-    public ICommand ExportConfigCommand { get; }
-
-    private void SpeakerAddItem(object? sender, RoutedEventArgs e) => SpeakersCollection.Add(new SpeakerItem());
+    private void SpeakerAddItem(object? sender, RoutedEventArgs e) => MainWindowViewModel.SpeakersCollection.Add(new SpeakerItem());
     private void DictAddItem(object? sender, RoutedEventArgs e) => DictsCollection.Add(new DictItem());
     
     public MainWindow()
     {
         InitializeComponent();
-        SpeakerRemoveItemCommand = new RelayCommand<SpeakerItem>(item =>
-        {
-            if (item != null) SpeakersCollection.Remove(item);
-        });
-        DictRemoveItemCommand = new RelayCommand<DictItem>(item =>
-        {
-            if (item != null) DictsCollection.Remove(item); 
-        });
-        DataContext = this;
+        DataContext = new MainWindowViewModel();
     }
 
+    private async void OnExportClick(object? sender, RoutedEventArgs e)
+    {
+        var sfd = new SaveFileDialog
+        {
+            Title = "Export YAML Config",
+            Filters =
+            {
+                new FileDialogFilter{ Name = "YAML File", Extensions = {"yaml", "yml"} },
+                new FileDialogFilter{ Name = "All Files", Extensions = {"*"} }
+            },
+            InitialFileName = "config.yaml"
+        };
+
+        var path = await sfd.ShowAsync(this);
+        if (string.IsNullOrWhiteSpace(path))
+        {
+            return;
+        }
+
+        var yamlContents = BuildYamlContent();
+        await File.WriteAllTextAsync(path, yamlContents, Encoding.UTF8);
+    }
+    
     private string BuildYamlContent()
     {
         var sb = new StringBuilder();

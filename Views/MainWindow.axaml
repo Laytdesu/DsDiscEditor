@@ -205,7 +205,7 @@
                         </StackPanel>
                 </Border>
         </WrapPanel>
-        <Button Margin="7" CornerRadius="7" MaxWidth="1000" Content="Export" Background="DodgerBlue" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="16"/>
+        <Button Margin="7" CornerRadius="7" MaxWidth="1000" Content="Export" Background="DodgerBlue" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="16" Click="OnExportClick"/>
         </StackPanel>
 </ScrollViewer>
     
